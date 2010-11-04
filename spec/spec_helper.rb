@@ -10,7 +10,13 @@ end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
-  
+  # Next 6 lines are from: https://github.com/rspec/rspec-core/issues/issue/62/
+  # Force-load all the app files.
+  # This is because (as of this writing) changes to the app/ files
+  # aren't loaded when running autotest with spork.
+  # We could set config.cache_classes to false in test.rb,
+  # but that breaks integration testing.
+  Dir["#{Rails.root}/app/**/*.rb"].each { |f| load f }
 end
 
 # --- Instructions ---
