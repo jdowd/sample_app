@@ -33,7 +33,7 @@ describe SessionsController do
         response.should have_selector("title", :content => "Sign in", )
       end
 
-      it "should have a flash.now message" do
+      it "should have an error message" do
         post :create, :session => @attr 
         flash.now[:error].should =~ /invalid/i
       end      

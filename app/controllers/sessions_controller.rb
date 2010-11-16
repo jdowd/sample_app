@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       @title = "Sign in"
       render 'new'
     else
-      sign_in user
+      sign_in user  # Both this and the next line can be written as (arg) instead of " arg"
       redirect_to user
     end
   end

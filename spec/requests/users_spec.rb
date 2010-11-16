@@ -30,7 +30,7 @@ describe "Users" do
           click_button
           response.should have_selector('div.flash.success', :content  => "Welcome")
           response.should render_template('users/show')
-        end
+        end.should change(User, :count).by(1)
       end
     end
   end
@@ -44,6 +44,7 @@ describe "Users" do
         fill_in :password, :with => ""  
         click_button
         response.should have_selector("div.flash.error", :content => "Invalid")
+        response.should render_template('sessions/new')
       end
     end
     
@@ -56,7 +57,7 @@ describe "Users" do
         click_button
         controller.should be_signed_in
         click_link "Sign out"
-        controller.should_not be_signed_in
+        controller.should_not be_signed_in 
       end
     end
   end
