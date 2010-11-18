@@ -13,7 +13,8 @@ class SessionsController < ApplicationController
       render 'new'
     else
       sign_in user  # Both this and the next line can be written as (arg) instead of " arg"
-      redirect_to user
+      # redirect_to user
+      redirect_back_or user
     end
   end
   
